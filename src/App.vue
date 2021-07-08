@@ -3,7 +3,7 @@
     <div>
       TodoList 수진
     </div>
-    <div >
+    <div>
       inputBox + add Button<br />
       <input type="text" v-model="todoItem" placeholder="할 일을 입력해주세요" >
       <button @click="add">추가</button>
@@ -11,7 +11,7 @@
     <div>
       List 출력 및 삭제버튼 만들기 + 상태변경 할수있게 만들기<br />
       <ul id="list">
-        <li v-for="(item,index) in todoItems" :key="item" >
+        <li v-for="(item,index) in todoItems" :key="index" >
           <input type="checkbox"  v-model="item.complete">
           {{ index }} | {{ item.todo }}  | {{item.complete}}
           <button @click="del(item, index)">삭제</button>
@@ -32,11 +32,7 @@ export default {
     return{
       toggle: true,
       todoItem: "",
-      todoItems: [
-        {todo:'a',complete:true},
-        {todo:'b',complete:true},
-        {todo:'c',complete:true}
-      ],
+      todoItems: [],
     }
   },
   methods: {
