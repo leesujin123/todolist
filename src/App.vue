@@ -13,7 +13,7 @@
       <ul id="List">
         <li v-for="todoList in todoItems" :key="todoList" >
           {{ todoList }}
-       
+          <button @click="del">삭제</button>
         </li>
       </ul>
     </div>
