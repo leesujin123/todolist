@@ -18,7 +18,8 @@
       </ul>
     </div>
     <div>
-      전체삭제버튼 만들기
+      전체삭제버튼 만들기<br />
+      <button @click="Alldel">전체 삭제</button>
     </div>
   </div>
 </template>
