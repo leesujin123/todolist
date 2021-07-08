@@ -5,11 +5,17 @@
     </div>
     <div >
       inputBox + add Button<br />
-      <input type="text" v-model="TodoItem" placeholder="할 일을 입력해주세요" >
+      <input type="text" v-model="todoItem" placeholder="할 일을 입력해주세요" >
       <button @click="add">추가</button>
     </div>
     <div>
       List 출력 및 삭제버튼 만들기 + 상태변경 할수있게 만들기<br />
+      <ul id="List">
+        <li v-for="todoList in todoItems" :key="todoList" >
+          {{ todoList }}
+       
+        </li>
+      </ul>
     </div>
     <div>
       전체삭제버튼 만들기
@@ -22,13 +28,26 @@
 export default {
   data(){
     return{
-      TodoItem: ""
+      todoItem: "",
+      todoItems: [
+          'a',
+          'b',
+          'c'
+      ]
     }
   },
   methods: {
     add(){
      console.log(this.TodoItem);
-     localStorage.setItem(this.TodoItem,this.TodoItem);
+     this.todoItems.push(this.todoItem);
+     this.todoItem = "";
+     this.clearInputBox();
+    },
+    clearInputBox() {
+      this.TodoItem = "";
+    },
+    del(){
+
     }
   }
 
