@@ -6,7 +6,7 @@
     <div >
       inputBox + add Button<br />
       <input type="text" v-model="TodoItem" placeholder="할 일을 입력해주세요" >
-      <button>추가</button>
+      <button @click="add">추가</button>
     </div>
     <div>
       List 출력 삭제버튼 만들기 + 상태변경 할수있게 만들기
@@ -23,6 +23,11 @@ export default {
   data(){
     return{
       TodoItem: ""
+    }
+  },
+  methods: {
+    add(){
+     console.log(this.TodoItem);
     }
   }
 
