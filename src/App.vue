@@ -11,9 +11,9 @@
     <div>
       List 출력 및 삭제버튼 만들기 + 상태변경 할수있게 만들기<br />
       <ul id="List">
-        <li v-for="todoList in todoItems" :key="todoList" >
-          {{ todoList }}
-          <button @click="del">삭제</button>
+        <li v-for="(todoList,index) in todoItems" :key="todoList" >
+          {{ index }} | {{ todoList }}
+          <button @click="del(todoList, index)">삭제</button>
         </li>
       </ul>
     </div>
@@ -37,17 +37,14 @@ export default {
     }
   },
   methods: {
-    add(){
-     console.log(this.TodoItem);
-     this.todoItems.push(this.todoItem);
-     this.todoItem = "";
-     this.clearInputBox();
+    add() {
+      console.log(this.todoItem);
+      this.todoItems.push(this.todoItem);
+      this.todoItem = "";
     },
-    clearInputBox() {
-      this.TodoItem = "";
-    },
-    del(){
-
+    del(todoItem,index){
+      this.todoItems.splice(index,1);
+      console.log(this.todoItems);
     }
   }
 
