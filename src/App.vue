@@ -9,7 +9,7 @@
       <button @click="add">추가</button>
     </div>
     <div>
-      List 출력 삭제버튼 만들기 + 상태변경 할수있게 만들기
+      List 출력 및 삭제버튼 만들기 + 상태변경 할수있게 만들기<br />
     </div>
     <div>
       전체삭제버튼 만들기
@@ -28,6 +28,7 @@ export default {
   methods: {
     add(){
      console.log(this.TodoItem);
+     localStorage.setItem(this.TodoItem,this.TodoItem);
     }
   }
 
