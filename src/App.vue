@@ -10,8 +10,24 @@
       </div>
       <div>
         List 출력 및 삭제버튼 만들기 + 상태변경 할수있게 만들기<br />
-        <ul id="list">
+        <ul >
           <li v-for="(item,index) in todoItems" :key="index" >
+            <input type="checkbox"  v-model="item.complete">
+            {{ index }} | {{ item.todo }}  | {{item.complete}}
+            <button @click="del(item, index)">삭제</button>
+          </li>
+        </ul>
+        <hr/>
+        <ul >
+          <li v-for="(item,index) in completeTodo" :key="index" >
+            <input type="checkbox"  v-model="item.complete">
+            {{ index }} | {{ item.todo }}  | {{item.complete}}
+            <button @click="del(item, index)">삭제</button>
+          </li>
+        </ul>
+        <hr/>
+        <ul>
+          <li v-for="(item,index) in nonCompleteTodo" :key="index" >
             <input type="checkbox"  v-model="item.complete">
             {{ index }} | {{ item.todo }}  | {{item.complete}}
             <button @click="del(item, index)">삭제</button>
@@ -21,12 +37,6 @@
       <div>
         전체삭제버튼 만들기<br />
         <button @click="allDel">전체 삭제</button>
-      </div>
-      <div>
-      완료목록만 뜨게 하기
-     </div>
-      <div>
-      못한목록만 뜨게 하기
       </div>
   </div>
 </template>
@@ -62,11 +72,18 @@ export default {
       this.todoItems.splice(0);
       console.log(this.todoItems);
     }
+  },
+  computed:{
+    completeTodo() {
+      return this.todoItems.filter(item => item.complete)
+    },
+    nonCompleteTodo() {
+      return this.todoItems.filter(item => !item.complete)
+
+    }
+
+
   }
 
 }
 </script>
-
-<style>
-
-</style>
