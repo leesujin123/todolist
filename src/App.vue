@@ -10,16 +10,17 @@
     </div>
     <div>
       List 출력 및 삭제버튼 만들기 + 상태변경 할수있게 만들기<br />
-      <ul id="List">
-        <li v-for="(todoList,index) in todoItems" :key="todoList" >
-          {{ index }} | {{ todoList }}
-          <button @click="del(todoList, index)">삭제</button>
+      <ul id="list">
+        <li v-for="(item,index) in todoItems" :key="item" >
+          <input type="checkbox"  v-model="item.complete">
+          {{ index }} | {{ item.todo }}  | {{item.complete}}
+          <button @click="del(item, index)">삭제</button>
         </li>
       </ul>
     </div>
     <div>
       전체삭제버튼 만들기<br />
-      <button @click="Alldel">전체 삭제</button>
+      <button @click="allDel">전체 삭제</button>
     </div>
   </div>
 </template>
@@ -29,22 +30,34 @@
 export default {
   data(){
     return{
+      toggle: true,
       todoItem: "",
       todoItems: [
-          'a',
-          'b',
-          'c'
-      ]
+        {todo:'a',complete:true},
+        {todo:'b',complete:true},
+        {todo:'c',complete:true}
+      ],
     }
   },
   methods: {
     add() {
-      console.log(this.todoItem);
-      this.todoItems.push(this.todoItem);
-      this.todoItem = "";
+      if(this.todoItem !== "") {
+        console.log(this.todoItem);
+        this.todoItems.push({
+          todo: this.todoItem,
+          complete: false,
+        })
+        this.todoItem = "";
+      }else {
+        alert("값을 입력하세요")
+      }
     },
     del(todoItem,index){
       this.todoItems.splice(index,1);
+      console.log(this.todoItems);
+    },
+    allDel(){
+      this.todoItems.splice(0);
       console.log(this.todoItems);
     }
   }
