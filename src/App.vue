@@ -19,6 +19,7 @@
         </ul>
         <hr/>
         <ul >
+          할일 완료<br />
           <li v-for="(item,index) in completeTodo" :key="index" >
             <input type="checkbox"  v-model="item.complete">
             {{ index }} | {{ item.todo }}  | {{item.complete}}
@@ -27,6 +28,7 @@
         </ul>
         <hr/>
         <ul>
+          해야하는 일 <br/>
           <li v-for="(item,index) in nonCompleteTodo" :key="index" >
             <input type="checkbox"  v-model="item.complete">
             {{ index }} | {{ item.todo }}  | {{item.complete}}
@@ -64,7 +66,7 @@ export default {
         alert("값을 입력하세요")
       }
     },
-    del(todoItem,index){
+    del(item,index){
       this.todoItems.splice(index,1);
       console.log(this.todoItems);
     },
@@ -79,11 +81,7 @@ export default {
     },
     nonCompleteTodo() {
       return this.todoItems.filter(item => !item.complete)
-
     }
-
-
   }
-
 }
 </script>
